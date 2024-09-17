@@ -1,21 +1,14 @@
 package application;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-
-import java.time.LocalDate;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.VBox;
 
 public class Bar {
-	private VBox bar;
+	private static VBox bar;
 	public Bar() {
 	       	Menu menu1 = new Menu("Application");
 	        // create menuitems
@@ -53,7 +46,7 @@ public class Bar {
 	        m1.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					CreateMenu a = new CreateMenu();
+					new CreateMenu();
 				}
 					
 			});
@@ -61,7 +54,7 @@ public class Bar {
 	        m2.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					LoadMenu screen = new LoadMenu();
+					new LoadMenu();
 				}
 					
 			});
@@ -85,7 +78,7 @@ public class Bar {
 	        m5.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					CreateMenu a = new CreateMenu();
+					new RoundsScreen ();
 				}
 					
 			});
@@ -93,13 +86,13 @@ public class Bar {
 	        m6.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent e) {
-					App.revealSolution();
+					App.loseGame();
 				}
 					
 			});
 
 	}
-	public VBox getBar() {
+	public static VBox getBar() {
 		return bar;
 	}
 	

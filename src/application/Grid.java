@@ -4,17 +4,36 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Grid{
-    int size;
-    int[][] minesGrid;
-    int[][] numGrid;
-    boolean superMine;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
-    public Grid(Level l){
-        size=l.gridSize;
-        superMine=l.superMine;
+public class Grid{
+    private int size;
+    private int[][] minesGrid;
+    private int[][] numGrid;
+    private boolean superMine;
+
+    public int getSize() {
+		return size;
+	}
+
+	public int[][] getMinesGrid() {
+		return minesGrid;
+	}
+
+	public int[][] getNumGrid() {
+		return numGrid;
+	}
+
+	public boolean hasSuperMine() {
+		return superMine;
+	}
+
+	public Grid(Level l){
+        size=l.getGridSize();
+        superMine=l.isSuperMine();
         minesGrid = new int[size][size];
-        this.fillGrid(l.mineNum);
+        this.fillGrid(l.getMineNum());
         numGrid = new int[size][size];
         this.countNeighbours();
         
@@ -84,6 +103,9 @@ public class Grid{
             fileWriter.close();
         } catch (IOException e) {
             System.out.println("An error occurred, while creating mines.txt.");
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setContentText("An error occurred, while creating mines.txt.");
+			alert.show();
             e.printStackTrace();
         }  
     }
@@ -114,7 +136,6 @@ public class Grid{
                     
                 }
             }
-            System.out.println();
         }
     }
 

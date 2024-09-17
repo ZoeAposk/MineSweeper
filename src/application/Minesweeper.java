@@ -4,13 +4,22 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+
 public class Minesweeper {
 	Level myLevel;
 	Grid myGrid;
 	Minefield field;
-	TimerBox timer;
 
 	public Minesweeper(File mySpecs) {
+		Alert alert = new Alert(AlertType.WARNING);
 		try {
 			Scanner myReader = new Scanner(mySpecs);
 
@@ -43,26 +52,31 @@ public class Minesweeper {
 			myReader.close();
 
 			myLevel = new Level(difficulty, mines, time, superMine);
-			myLevel.printSpecs();
+			//myLevel.printSpecs();
 			myGrid = new Grid(myLevel);
-			myGrid.printGrid();
-			myGrid.printNeighbours();
-			field = new Minefield(myGrid.numGrid, myLevel.gridSize);
-			// timer = new TimerBox(time);
+			//myGrid.printGrid();
+			//myGrid.printNeighbours();
+			field = new Minefield(myGrid.getNumGrid(), myLevel.getGridSize(), myLevel.getMineNum());
+			
 		} catch (InvalidDescriptionException e) {
 			System.out.println("Invalid Description Exception!\n" + e.mes);
-			// System.exit(0);
+			alert.setContentText("Invalid Description Exception!\n" + e.mes);
+			alert.show();
 		}
 
 		catch (InvalidValueException e) {
 			System.out.println("Invalid Value Exception!\n" + e.mes);
-			// System.exit(0);
+			alert.setContentText("Invalid Value Exception!\n" + e.mes);
+			alert.show();
 		}
 
 		catch (FileNotFoundException e) {
 			System.out.println("File not found");
-			System.exit(0);
+			alert.setContentText("File not found");
+			alert.show();
+			
 		}
 
 	}
+
 }

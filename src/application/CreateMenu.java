@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
@@ -117,7 +119,6 @@ public class CreateMenu {
 	       				r4.setToggleGroup(superGroup);
 	       				AnchorPane.setTopAnchor(r3, 170.0);
 	       				AnchorPane.setTopAnchor(r4, 170.0);
-	       				//AnchorPane.setLeftAnchor(l2, 30.0);
 	       				AnchorPane.setLeftAnchor(r3, 150.0);
 	       				AnchorPane.setRightAnchor(r4, 50.0);
 	       				pane.getChildren().addAll(l5,r3,r4);
@@ -195,6 +196,9 @@ public class CreateMenu {
 	        fileWriter.close();
 		} catch (IOException e) {
             System.out.println("An error occurred, while creating scenario file.");
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setContentText("An error occurred, while creating scenario file.");
+			alert.show();
             e.printStackTrace();
         }
 	

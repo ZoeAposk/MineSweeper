@@ -15,29 +15,25 @@ public class Tile {
 	private Image flag;
 	private boolean visible = false;
 	private boolean flagged = false;
-	//private boolean flagged = false;
-	
+
 	public Tile(int x, int y, int n) {
 		num = n;
-		x_pos=x;
-		y_pos=y;
+		x_pos = x;
+		y_pos = y;
 		try {
 			standard = new Image(new FileInputStream("src/assets/blank.png"));
 			shown = standard;
 			flag = new Image(new FileInputStream("src/assets/flag.png"));
-			if(n>0 && n<10) {
-				input = new FileInputStream("src/assets/number" + Integer.toString(num) +".png");
+			if (n > 0 && n < 10) {
+				input = new FileInputStream("src/assets/number" + Integer.toString(num) + ".png");
 				img = new Image(input);
-			}
-			else if(n==20){
+			} else if (n == 20) {
 				input = new FileInputStream("src/assets/mine.png");
 				img = new Image(input);
-			}
-			else if(n==100){
+			} else if (n == 100) {
 				input = new FileInputStream("src/assets/supermine.png");
 				img = new Image(input);
-			}
-			else if(n==0){
+			} else if (n == 0) {
 				input = new FileInputStream("src/assets/exposed.png");
 				img = new Image(input);
 			}
@@ -45,9 +41,9 @@ public class Tile {
 			System.out.println("Image not Found");
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
